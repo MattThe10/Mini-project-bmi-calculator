@@ -10,6 +10,7 @@ btn_reset.addEventListener('click', () => {
     reset();
 })
 
+//handling calculation of BMI
 function calculate(height, weight) {
     let number = weight / (height * height);
     let result = number * 10000;
@@ -20,8 +21,11 @@ function validate() {
     let h_inp = document.getElementById('h-inp');
     let w_inp = document.getElementById('w-inp');
     let result = calculate(h_inp.value, w_inp.value);
+    if(document.getElementById('h-inp').value == '' || document.getElementById('w-inp').value ==''){
+        par.textContent = 'Enter valid numbers!'
+    } else {
+        
     let str = '';
-
     if(result < 16 ) str = 'severely underweight';
     if(result >= 16 && result <= 16.9) str = 'moderately underweight';
     if(result >= 17 && result <= 18.4) str = 'mildly underweight';
@@ -32,9 +36,12 @@ function validate() {
     if(result > 40) str = 'overweight in class III';
 
     par.textContent = `Your BMI is ${result}, you are ${str}`;
+    }
+    
     console.log(result);
 }
 
+//Setting all inputs to default 
 function reset() {
     document.getElementById('h-inp').value = '';
     document.getElementById('w-inp').value = '';
